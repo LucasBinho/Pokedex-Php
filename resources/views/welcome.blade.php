@@ -25,10 +25,25 @@
     </head>
     <body class="antialiased">
         <h1 class="d-flex justify-content-center">Pokedex</h1>
-        @foreach ($pokemons as $item)
-            <p>Nome: {{ json_encode($pokemons['name'])}}</p>
-            <p>Id: {{ json_encode($pokemons['id'])}}</p>     
-            <p>Habilidades: {{ json_encode($pokemons['abilities'])}}</p>   
-        @endforeach
+        <p>Nome: {{$pokemons['name']}}</p>
+        <img src="{{ json_decode($pokemons)->sprites->front_default }}" alt="">
+        <p>Id Pokemon: {{$pokemons['id']}}</p>
+        <p>Habilidade 01: {{ json_decode($pokemons)->abilities[0]->ability->name }}</p>
+        <p>Habilidade 01: {{ json_decode($pokemons)->abilities[1]->ability->name }}</p>
+
+        <div class="poke-search">
+            <h4>Pesquise aqui sobre seu Pokémon preferido!</h4>
+            <form name="form" method="GET">
+              <label for="pk-name" class="lbl">Nome do Pokémon:</label>
+              <input id="pk-name" name="pk-name" type="text">
+              <input id="submit" type="submit" value="Pesquisar"> 
+            </form>
+        </div>
+
+        @php
+            $pokemonName = isset($_GET['pk-name']);
+            echo $pokemonName
+        @endphp
+
     </body>
 </html>

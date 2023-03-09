@@ -16,8 +16,7 @@ class PokeController extends Controller
     public function index()
     {   
 
-        $api = Http::get('https://pokeapi.co/api/v2/pokemon/ditto')->json();
-
+        $api = Http::get('https://pokeapi.co/api/v2/pokemon/ditto');
         return view('welcome', ['pokemons' => $api]);
     }
 
